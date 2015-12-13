@@ -22,14 +22,19 @@ var drawModule = (function () {
   }
 
   var drawSnake = function() {
-      var length = 20;
+      var length = 10;
       snake = [];
       for (var i = length-1; i>=0; i--) {
           snake.push({x:0, y:0});
-      }  
+      }
+      snake2 = [];
+      for (var i = length-1; i>=0; i--) {
+          snake2.push({x:17, y:0});
+      }
   }
     
-  var paint = function(){
+  var paint = function()
+  {
       ctx.fillStyle = 'lightgrey';
       ctx.fillRect(0, 0, w, h);
       ctx.strokeStyle = 'black';
@@ -40,7 +45,10 @@ var drawModule = (function () {
       var snakeX = snake[0].x;
       var snakeY = snake[0].y;
 
-      if (direction == 'right') { 
+      var snake2X = snake2[0].x;
+      var snake2Y = snake2[0].y;
+
+      if (direction == 'right') {
         snakeX++; }
       else if (direction == 'left') { 
         snakeX--; }
@@ -49,7 +57,18 @@ var drawModule = (function () {
       } else if(direction == 'down') { 
         snakeY++; }
 
-      if (snakeX == -1 || snakeX == w/snakeSize 
+
+      if (direction == 'right') {
+          snake2X++; }
+      else if (direction == 'left') {
+          snake2X--; }
+      else if (direction == 'up') {
+          snake2Y--;
+      } else if(direction == 'down') {
+          snake2Y++; }
+
+
+      if (snakeX == -1 || snakeX == w/snakeSize
           || snakeY == -1 || snakeY == h/snakeSize
           || checkCollision(snakeX, snakeY, snake)) {
           //restart game
@@ -59,8 +78,20 @@ var drawModule = (function () {
           gameloop = clearInterval(gameloop);
           return;          
         }
-        
-        if(snakeX == food.x && snakeY == food.y) {
+
+      if (snake2X == -1 || snake2X == w/snakeSize
+          || snake2Y == -1 || snake2Y == h/snakeSize
+          || checkCollision(snake2X, snake2Y, snake2)) {
+          //restart game
+          btn.removeAttribute('disabled', true);
+
+          ctx.clearRect(0,0,w,h);
+          gameloop = clearInterval(gameloop);
+          return;
+      }
+
+        if(snakeX == food.x && snakeY == food.y)
+        {
          //Create a new head instead of moving the tail
           var tail =
           {
@@ -78,10 +109,30 @@ var drawModule = (function () {
         snake.unshift(tail); //puts back the tail as the first cell
         for(var i = 0; i < snake.length; i++) {
           bodySnake(snake[i].x, snake[i].y);
-        } 
-        
-        pizza(food.x, food.y); 
-        scoreText();
+        }
+
+        if(snake2X == food.x && snake2Y == food.y)
+        {
+            //Create a new head instead of moving the tail
+            var tail2 =
+            {
+                x: snake2X,
+                y: snake2Y
+            };
+            score ++;
+            createFood(); //Create new food
+        } else {
+            var tail2 = snake2.pop(); //pops out the last cell
+            tail2.x = snake2X;
+            tail2.y = snake2Y;
+        }
+        //The snake can now eat the food.
+        snake2.unshift(tail2); //puts back the tail as the first cell
+         for(var i = 0; i < snake2.length; i++) {
+            bodySnake(snake2[i].x, snake2[i].y);
+          }
+          pizza(food.x, food.y);
+          scoreText();
   }
 
   var createFood = function() {
@@ -90,7 +141,8 @@ var drawModule = (function () {
         y: Math.floor((Math.random() * 28))
       }
 
-      for(var i=0; i<snake.length; i++) {
+      for(var i=0; i<snake.length; i++)
+      {
         var snakeX = snake[i].x;
         var snakeY = snake[i].y;
       
@@ -99,6 +151,18 @@ var drawModule = (function () {
           food.x = Math.floor((Math.random() * 28));
           food.y = Math.floor((Math.random() * 28));
         }
+      }
+
+      for(var i=0; i<snake2.length; i++)
+      {
+          var snake2X = snake2[i].x;
+          var snake2Y = snake2[i].y;
+
+          if(food.x===snake2X && food.y === snake2Y
+              || food.y === snake2Y && food.x===snake2X) {
+              food.x = Math.floor((Math.random() * 28));
+              food.y = Math.floor((Math.random() * 28));
+          }
       }
   }
 
@@ -111,7 +175,7 @@ var drawModule = (function () {
   }
 
   var init = function(){
-      direction = 'right';
+      direction = 'down';
       drawSnake();
       createFood();
       gameloop = setInterval(paint, 40);
