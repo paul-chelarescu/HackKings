@@ -154,8 +154,8 @@ var drawModule = (function () {
             bodySnake2(snake2[i].x, snake2[i].y);
           }
           pizza(food.x, food.y);
-          scoreText();
           score2Text();
+          scoreText();
   }
 
   var createFood = function() {
