@@ -7,6 +7,13 @@ var drawModule = (function () {
         ctx.strokeRect(x*snakeSize, y*snakeSize, snakeSize, snakeSize);
   }
 
+  var bodySnake2 = function(x, y) {
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(x*snakeSize, y*snakeSize, snakeSize, snakeSize);
+        ctx.strokeStyle = 'darkblue';
+        ctx.strokeRect(x*snakeSize, y*snakeSize, snakeSize, snakeSize);
+  }
+
   var pizza = function(x, y) {
         ctx.fillStyle = 'yellow';
         ctx.fillRect(x*snakeSize, y*snakeSize, snakeSize, snakeSize);
@@ -138,7 +145,7 @@ var drawModule = (function () {
         //The snake can now eat the food.
         snake2.unshift(tail2); //puts back the tail as the first cell
          for(var i = 0; i < snake2.length; i++) {
-            bodySnake(snake2[i].x, snake2[i].y);
+            bodySnake2(snake2[i].x, snake2[i].y);
           }
           pizza(food.x, food.y);
           scoreText();
