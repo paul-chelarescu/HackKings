@@ -58,13 +58,13 @@ var drawModule = (function () {
         snakeY++; }
 
 
-      if (direction2 == 'd') {
+      if (direction2 == 'right') {
           snake2X++; }
-      else if (direction2 == 'a') {
+      else if (direction2 == 'left') {
           snake2X--; }
-      else if (direction2== 'w') {
+      else if (direction2== 'up') {
           snake2Y--;
-      } else if(direction2 == 's') {
+      } else if(direction2 == 'down') {
           snake2Y++; }
 
 

@@ -40,36 +40,38 @@ btn.addEventListener("click", function(){ drawModule.init();});
           }
 
         case 65:
-          if (direction != 'right'){
-            direction = 'left';
+          if (direction2 != 'right'){
+            direction2 = 'left';
             console.log('left');
           }
           break
           }
 
         case 68:
-          if (direction != 'left'){
-            direction = 'right';
+          if (direction2 != 'left'){
+            direction2 = 'right';
             console.log('right');
           }
           break
           } 
+
+        case 87:
+        if (direction2 != 'down'){
+          direction2 = 'up';
+          console.log('up');
+        }
+        break;
+        }  
           
         case 83:
-          if (direction != 'up'){
-            direction = 'down';
+          if (direction2 != 'up'){
+            direction2 = 'down';
             console.log('down');
           }
           break
           }  
 
-        case 87:
-        if (direction != 'down'){
-          direction = 'up';
-          console.log('up');
-        }
-        break;
-        }
+        
                 
       }
 
