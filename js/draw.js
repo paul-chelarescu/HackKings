@@ -58,13 +58,13 @@ var drawModule = (function () {
         snakeY++; }
 
 
-      if (direction == 'right') {
+      if (direction2 == 'right') {
           snake2X++; }
-      else if (direction == 'left') {
+      else if (direction2 == 'left') {
           snake2X--; }
-      else if (direction == 'up') {
+      else if (direction2== 'up') {
           snake2Y--;
-      } else if(direction == 'down') {
+      } else if(direction2 == 'down') {
           snake2Y++; }
 
 
@@ -176,6 +176,7 @@ var drawModule = (function () {
 
   var init = function(){
       direction = 'down';
+      direction2 = 'down';
       drawSnake();
       createFood();
       gameloop = setInterval(paint, 40);
