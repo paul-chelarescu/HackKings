@@ -29,7 +29,7 @@ var drawModule = (function () {
       }
       snake2 = [];
       for (var i = length-1; i>=0; i--) {
-          snake2.push({x:5, y:0});
+          snake2.push({x:27, y:0});
       }
   }
     
@@ -199,7 +199,7 @@ var drawModule = (function () {
       direction2 = 'down';
       drawSnake();
       createFood();
-      gameloop = setInterval(paint, 40);
+      gameloop = setInterval(paint, 500);
   }
 
 

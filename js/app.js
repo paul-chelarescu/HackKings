@@ -3,7 +3,7 @@
 var btn = document.getElementById('btn');
 btn.addEventListener("click", function(){ drawModule.init();});
 
-	document.onkeydown = function(event) {
+document.onkeydown = function(event){
 
         keyCode = window.event.keyCode; 
         keyCode = event.keyCode;
@@ -37,7 +37,7 @@ btn.addEventListener("click", function(){ drawModule.init();});
           console.log('down');
           }
           break;
-          }
+          
 
         case 65:
           if (direction2 != 'right'){
@@ -45,7 +45,7 @@ btn.addEventListener("click", function(){ drawModule.init();});
             console.log('left');
           }
           break
-          }
+          
 
         case 68:
           if (direction2 != 'left'){
@@ -53,7 +53,7 @@ btn.addEventListener("click", function(){ drawModule.init();});
             console.log('right');
           }
           break
-          } 
+           
 
         case 87:
         if (direction2 != 'down'){
@@ -61,7 +61,7 @@ btn.addEventListener("click", function(){ drawModule.init();});
           console.log('up');
         }
         break;
-        }  
+          
           
         case 83:
           if (direction2 != 'up'){
@@ -69,11 +69,6 @@ btn.addEventListener("click", function(){ drawModule.init();});
             console.log('down');
           }
           break
-          }  
-
-        
-                
+            
       }
-
-
-})(window, document, drawModule);
+}})(window, document, drawModule);
