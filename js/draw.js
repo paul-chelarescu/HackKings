@@ -29,7 +29,7 @@ var drawModule = (function () {
       }
       snake2 = [];
       for (var i = length-1; i>=0; i--) {
-          snake2.push({x:17, y:0});
+          snake2.push({x:5, y:0});
       }
   }
     
@@ -66,6 +66,15 @@ var drawModule = (function () {
           snake2Y--;
       } else if(direction2 == 'down') {
           snake2Y++; }
+
+      //Check whether the 2 snakes have collided with eachother
+      if(checkCollision(snake, snake2)) {
+          //Restart the game
+          btn.removeAttribute('disabled', true);
+          ctx.clearRect(0,0,w,h);
+          gameloop = clearInterval(gameloop);
+         return;
+      }
 
 
       if (snakeX == -1 || snakeX == w/snakeSize
@@ -172,6 +181,17 @@ var drawModule = (function () {
         return true;
       } 
       return false;
+  }
+
+   var checkCollision = function(array, array2) {
+        for(var i = 0; i < array.length; i++) {
+          for(var j = 0; j < array2.length; j++) {
+              if(array[i].x === array2[j].x && array[i].y == array2[j].y) {
+                  return true;
+              }
+          }
+        }
+        return false;
   }
 
   var init = function(){
