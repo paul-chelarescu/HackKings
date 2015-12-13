@@ -23,20 +23,26 @@ var drawModule = (function () {
 
   var scoreText = function() {
     var score_text = "Score: " + score;
-    ctx.fillStyle = 'blue';
-    ctx.fillText(score_text, 300, h-5);
+    ctx.fillStyle = 'green';
+    ctx.fillText(score_text, 100, h-5);
     ctx.font = "30px Helvetica";
   }
 
+    var score2Text = function() {
+        var score_text = "Score: " + score2;
+        ctx.fillStyle = 'blue';
+        ctx.fillText(score_text, 400, h-5);
+        ctx.font = "30px Helvetica";
+    }
   var drawSnake = function() {
       var length = 10;
       snake = [];
       for (var i = length-1; i>=0; i--) {
-          snake.push({x:0, y:0});
+          snake.push({x:5, y:0});
       }
       snake2 = [];
       for (var i = length-1; i>=0; i--) {
-          snake2.push({x:27, y:0});
+          snake2.push({x:22, y:0});
       }
   }
     
@@ -75,7 +81,7 @@ var drawModule = (function () {
           snake2Y++; }
 
       //Check whether the 2 snakes have collided with eachother
-      if(checkCollision(snake, snake2)) {
+      if(checkCollision2(snake, snake2)) {
           //Restart the game
           btn.removeAttribute('disabled', true);
           ctx.clearRect(0,0,w,h);
@@ -135,7 +141,7 @@ var drawModule = (function () {
                 x: snake2X,
                 y: snake2Y
             };
-            score ++;
+            score2 ++;
             createFood(); //Create new food
         } else {
             var tail2 = snake2.pop(); //pops out the last cell
@@ -149,6 +155,7 @@ var drawModule = (function () {
           }
           pizza(food.x, food.y);
           scoreText();
+          score2Text();
   }
 
   var createFood = function() {
@@ -190,7 +197,7 @@ var drawModule = (function () {
       return false;
   }
 
-   var checkCollision = function(array, array2) {
+   var checkCollision2 = function(array, array2) {
         for(var i = 0; i < array.length; i++) {
           for(var j = 0; j < array2.length; j++) {
               if(array[i].x === array2[j].x && array[i].y == array2[j].y) {

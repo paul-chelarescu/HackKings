@@ -4,6 +4,7 @@ var snakeSize = 25;
 var w = 700;
 var h = 700;
 var score = 0;
+var score2 = 0;
 var snake;
 var snake2;
 var food;
