@@ -5,3 +5,5 @@ An adapted javascript snake game to work with two players that takes its command
 
 
 You can find more information here: http://devpost.com/software/hackkings
+
+[Logo](/logo.png)
